@@ -27,20 +27,38 @@ class NewsDetailsFragment : Fragment(R.layout.news_details_fragment) {
         binding.tvDescriptionDetails.text = article.description
 
         Picasso.get().load(article.urlToImage).into(binding.imgDetails)
+        viewModelDatabase.getAllNote().observe(viewLifecycleOwner, { listFavorit ->
+            listFavorit.forEach { favorite ->
 
-        val news = Article(
-            0,
-            args.argsNews?.description,
-            "",
-            args.argsNews?.title,
-            "",
-            args.argsNews?.urlToImage
-        )
-        binding.fabFavorite.setOnClickListener {
 
-            viewModelDatabase.insertNews(news)
-            Snackbar.make(view, "با موفقیت به علاقه مندی ها اضافه شد", Snackbar.LENGTH_SHORT).show()
-        }
+                val news = Article(
+                    0,
+                    args.argsNews?.description,
+                    "",
+                    args.argsNews?.title,
+                    "",
+                    args.argsNews?.urlToImage
+                )
+                binding.fabFavorite.setOnClickListener {
+                    if (news.title == favorite.title)
+                    {
+                        Snackbar.make(
+                            view,
+                            "این مطلب قبلا ذخیره شده است",
+                            Snackbar.LENGTH_SHORT).show()
+                    }
+                    else {
+                        viewModelDatabase.insertNews(news)
+                        Snackbar.make(
+                            view,
+                            "با موفقیت به علاقه مندی ها اضافه شد",
+                            Snackbar.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+            }
+        })
 
 
     }
