@@ -7,21 +7,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.databinding.FavoriteItemBinding
-import com.example.newsapp.databinding.NewsItemBinding
-import com.example.newsapp.model.favorite.Favorite
 import com.example.newsapp.model.news.Article
 import com.squareup.picasso.Picasso
 
 class FavoriteAdapter(
     var context: Context,
-    var data: List<Favorite>,
-    var itemClickListener: (Favorite) -> Unit, var deleteNoteItems: (newsEntity: Favorite) -> Unit
+    var data: List<Article>,
+    var itemClickListener: (Article) -> Unit, var deleteNoteItems: (newsEntity: Article) -> Unit
 ) :
     RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
 
     class MyViewHolder(val binding: FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setDataNote(data: Favorite) {
+        fun setDataNote(data: Article) {
             binding.favoriteModel = data
         }
 

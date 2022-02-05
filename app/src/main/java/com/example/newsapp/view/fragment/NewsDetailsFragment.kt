@@ -7,12 +7,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.newsapp.R
 import com.example.newsapp.databinding.NewsDetailsFragmentBinding
-import com.example.newsapp.model.favorite.Favorite
 import com.example.newsapp.model.news.Article
 import com.example.newsapp.viewmodel.database.DatabaseViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +28,7 @@ class NewsDetailsFragment : Fragment(R.layout.news_details_fragment) {
 
         Picasso.get().load(article.urlToImage).into(binding.imgDetails)
 
-        val news = Favorite(
+        val news = Article(
             0,
             args.argsNews?.description,
             "",

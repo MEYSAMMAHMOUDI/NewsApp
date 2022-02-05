@@ -6,7 +6,7 @@
 
         <variable
             name="favoriteModel"
-            type="com.example.newsapp.model.favorite.Favorite" />
+            type="com.example.newsapp.model.news.Article" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -2,22 +2,21 @@ package com.example.newsapp.local.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.newsapp.model.favorite.Favorite
 import com.example.newsapp.model.news.Article
 
 @Dao
 interface NewsDao {
     @Query("SELECT * FROM news_tbl")
-    fun getallNews(): LiveData<List<Favorite>>
+    fun getallNews(): LiveData<List<Article>>
 
     @Insert()
-    fun insertNews(favorite: Favorite)
+    fun insertNews(article: Article)
 
     @Delete
-    fun deletetNews(favorite: Favorite)
+    fun deletetNews(article: Article)
 
     @Update
-    fun updatetNews(favorite: Favorite)
+    fun updatetNews(article: Article)
 
     @Query("DELETE  FROM news_tbl")
     fun deleteAllNews()
