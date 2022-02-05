@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/NewsFragment"
+        android:icon="@drawable/ic_news"
+        android:title="@string/news" />
+
+    <item
+        android:id="@+id/FavoriteFragment"
+        android:icon="@drawable/ic_favorite_details"
+        android:title="@string/fravorite" />
+
+    <item
+        android:id="@+id/SettingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/setting" />
+</menu>

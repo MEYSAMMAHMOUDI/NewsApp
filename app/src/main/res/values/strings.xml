@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">NewsApp</string>
+    <string name="news">اخبار</string>
+    <string name="fravorite">نشان شده ها</string>
+    <string name="setting">تنظیمات</string>
+
+</resources>
