@@ -5,19 +5,19 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.newsapp.R
 import com.example.newsapp.adapter.FavoriteAdapter
 import com.example.newsapp.databinding.FavoriteFragmentBinding
 import com.example.newsapp.model.news.Article
+import com.example.newsapp.utils.SwipToDelete
 import com.example.newsapp.viewmodel.database.DatabaseViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
     private lateinit var binding: FavoriteFragmentBinding
     private val viewModelDatabase: DatabaseViewModel by viewModels()
-    private lateinit var newsListSize: List<Article>
     private lateinit var favoriteAdapter: FavoriteAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,8 +31,8 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
                 itemClickListener = {
 
 
-                },
-                deleteNoteItems = {})
+                })
+            swipTOdeleteNews(data, favoriteAdapter, viewModelDatabase, view)
             binding.rvFavorite.adapter = favoriteAdapter
 
 
@@ -48,5 +48,14 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
         }
     }
 
-
+    fun swipTOdeleteNews(
+        article: List<Article>,
+        favoriteAdapter: FavoriteAdapter,
+        databaseViewModel: DatabaseViewModel,
+        view: View
+    ) {
+        val itemDelete =
+            ItemTouchHelper(SwipToDelete(article, favoriteAdapter, databaseViewModel, view))
+        itemDelete.attachToRecyclerView(binding.rvFavorite)
+    }
 }

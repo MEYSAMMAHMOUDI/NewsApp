@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 class FavoriteAdapter(
     var context: Context,
     var data: List<Article>,
-    var itemClickListener: (Article) -> Unit, var deleteNoteItems: (newsEntity: Article) -> Unit
+    var itemClickListener: (Article) -> Unit
 ) :
     RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
@@ -24,6 +24,12 @@ class FavoriteAdapter(
         }
 
     }
+
+    fun deleteNewsItem(position:Int)
+    {
+           notifyItemRemoved(position)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)

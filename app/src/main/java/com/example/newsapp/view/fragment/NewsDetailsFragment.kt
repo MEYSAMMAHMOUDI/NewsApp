@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewsDetailsFragment : Fragment(R.layout.news_details_fragment) {
     private lateinit var binding: NewsDetailsFragmentBinding
-
     private val viewModelDatabase: DatabaseViewModel by viewModels()
     val args: NewsDetailsFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,39 +27,46 @@ class NewsDetailsFragment : Fragment(R.layout.news_details_fragment) {
 
         Picasso.get().load(article.urlToImage).into(binding.imgDetails)
         viewModelDatabase.getAllNote().observe(viewLifecycleOwner, { listFavorit ->
-            listFavorit.forEach { favorite ->
 
 
-                val news = Article(
-                    0,
-                    args.argsNews?.description,
-                    "",
-                    args.argsNews?.title,
-                    "",
-                    args.argsNews?.urlToImage
-                )
-                binding.fabFavorite.setOnClickListener {
-                    if (news.title == favorite.title)
-                    {
-                        Snackbar.make(
-                            view,
-                            "این مطلب قبلا ذخیره شده است",
-                            Snackbar.LENGTH_SHORT).show()
-                    }
-                    else {
-                        viewModelDatabase.insertNews(news)
-                        Snackbar.make(
-                            view,
-                            "با موفقیت به علاقه مندی ها اضافه شد",
-                            Snackbar.LENGTH_SHORT
-                        )
-                            .show()
-                    }
+            val news = Article(
+                0,
+                args.argsNews?.description,
+                "",
+                args.argsNews?.title,
+                "",
+                args.argsNews?.urlToImage
+            )
+
+            listFavorit.forEach {
+                if (
+                    news.title == it.title
+                ) {
+                    binding.fabFavorite.isEnabled = false
+                } else {
+                    binding.fabFavorite.isEnabled
                 }
+
             }
+
+
+
+
+            binding.fabFavorite.setOnClickListener {
+
+
+                viewModelDatabase.insertNews(news)
+                Snackbar.make(
+                    view,
+                    "با موفقیت به علاقه مندی ها اضافه شد",
+                    Snackbar.LENGTH_SHORT
+                )
+                    .show()
+
+
+            }
+
         })
-
-
     }
 }
 
