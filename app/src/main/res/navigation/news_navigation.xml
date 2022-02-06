@@ -8,7 +8,11 @@
         android:id="@+id/FavoriteFragment"
         android:name="com.example.newsapp.view.fragment.FavoriteFragment"
         android:label="نشان شده ها"
-        tools:layout="@layout/favorite_fragment" />
+        tools:layout="@layout/favorite_fragment" >
+        <action
+            android:id="@+id/action_FavoriteFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
         android:name="com.example.newsapp.view.fragment.NewsDetailsFragment"

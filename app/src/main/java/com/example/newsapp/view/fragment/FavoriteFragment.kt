@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.newsapp.R
@@ -28,9 +29,10 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
             favoriteAdapter = FavoriteAdapter(
                 requireContext(),
                 data,
-                itemClickListener = {
+                itemClickListener = { itemclick,dataFavorit->
 
-
+                    view.findNavController()
+                        .navigate(FavoriteFragmentDirections.actionFavoriteFragmentToNewsDetailsFragment(dataFavorit))
                 })
             swipTOdeleteNews(data, favoriteAdapter, viewModelDatabase, view)
             binding.rvFavorite.adapter = favoriteAdapter

@@ -2,6 +2,7 @@ package com.example.newsapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.squareup.picasso.Picasso
 class FavoriteAdapter(
     var context: Context,
     var data: List<Article>,
-    var itemClickListener: (Article) -> Unit
+    var itemClickListener: (view: View, news: Article) -> Unit
 ) :
     RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
 
@@ -25,9 +26,8 @@ class FavoriteAdapter(
 
     }
 
-    fun deleteNewsItem(position:Int)
-    {
-           notifyItemRemoved(position)
+    fun deleteNewsItem(position: Int) {
+        notifyItemRemoved(position)
     }
 
 
@@ -43,16 +43,23 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val article = Article(
+            0,
+            data[position].description,
+            "",
+            data[position].title,
+            "",
+            data[position].urlToImage
+        )
+
 
         Picasso.get().load(data[position].urlToImage)
             .placeholder(R.drawable.ic_defualt_image).into(holder.binding.imgNews)
         holder.setDataNote(data[position])
         holder.itemView.setOnClickListener {
-            itemClickListener(data[position])
+            itemClickListener(holder.binding.root, article)
         }
-        /*     holder.binding.deleteNote.setOnClickListener {
-                 deleteNoteItems(data[position])
-             }*/
+
     }
 
     override fun getItemCount(): Int {
