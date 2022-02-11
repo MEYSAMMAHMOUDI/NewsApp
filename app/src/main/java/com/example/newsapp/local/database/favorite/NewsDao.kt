@@ -1,4 +1,4 @@
-package com.example.newsapp.local.database
+package com.example.newsapp.local.database.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

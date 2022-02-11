@@ -4,5 +4,8 @@
     <string name="news">اخبار</string>
     <string name="fravorite">نشان شده ها</string>
     <string name="setting">تنظیمات</string>
+    <string name="switchStting">حالت روشن و تاریک</string>
+    <string name="light_mode">حالت روز</string>
+    <string name="dark_mode">حالت شب</string>
 
 </resources>

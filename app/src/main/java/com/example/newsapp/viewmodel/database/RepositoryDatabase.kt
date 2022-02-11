@@ -1,6 +1,7 @@
-package com.example.newsapp.local.database
+package com.example.newsapp.viewmodel.database
 
 import androidx.lifecycle.LiveData
+import com.example.newsapp.local.database.favorite.NewsDao
 import com.example.newsapp.model.news.Article
 import javax.inject.Inject
 
